@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+</head>
+
+<body>
+    <h1>El juego terminó</h1>
+    <h3>Estos fueron los resultados: </h3>
+    <div id="resultados"></div>
+
+    <script>
+        function convertirJugada(jugada) {
+            if (jugada === 0) {
+                return "Piedra";
+            } else if (jugada === 1) {
+                return "Papel";
+            } else if (jugada === 2) {
+                return "Tijera";
+            }
+        }
+
+        function solicitarJugada() {
+            let jugada;
+            do {
+                jugada = parseInt(prompt("Elige tu jugada: 0 para Piedra, 1 para Papel, 2 para Tijera"));
+            } while (jugada !== 0 && jugada !== 1 && jugada !== 2);
+            return jugada;
+        }
+
+        function jugarPiedraPapelTijera() {
+            const resultadosDiv = document.getElementById("resultados");
+            resultadosDiv.innerHTML = "";
+
+            // Solicitar cuántas veces quieres jugar
+            let veces = parseInt(prompt("¿Cuántas veces deseas jugar contra la computadora?"));
+
+            for (let i = 0; i < veces; i++) {
+                // Solicitar que indiques la jugada
+                let jugadaUsuario = solicitarJugada();
+
+                // Generar una jugada automática para la máquina
+                let jugadaMaquina = Math.floor(Math.random() * 3);
+
+                // Convertir las jugadas a texto usando las funciones
+                let jugadaUsuarioTexto = convertirJugada(jugadaUsuario);
+                let jugadaMaquinaTexto = convertirJugada(jugadaMaquina);
+
+                // Definir el ganador
+                let resultado = "";
+                if (jugadaUsuario === jugadaMaquina) {
+                    resultado = "Empate";
+                } else if (
+                    (jugadaUsuario === 0 && jugadaMaquina === 2) ||
+                    (jugadaUsuario === 1 && jugadaMaquina === 0) ||
+                    (jugadaUsuario === 2 && jugadaMaquina === 1)
+                ) {
+                    resultado = "¡Ganaste!";
+                } else {
+                    resultado = "Perdiste contra la máquina";
+                }
+
+                // Mostrar resultados parciales
+                alert(`Tu jugada: ${jugadaUsuarioTexto}\nJugada de la máquina: ${jugadaMaquinaTexto}\nResultado: ${resultado}`);
+
+                // Mostrar resultados totales en HTML
+                resultadosDiv.innerHTML += `<p>Ronda ${i + 1}: Tú elegiste ${jugadaUsuarioTexto}, la computadora eligió ${jugadaMaquinaTexto}. ${resultado}</p>`;
+            }
+        }
+
+        jugarPiedraPapelTijera();
+    </script>
+</body>
+
+</html>
