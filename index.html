@@ -36,18 +36,18 @@
             resultadosDiv.innerHTML = "";
 
             // Solicitar cuántas veces quieres jugar
-            let veces = parseInt(prompt("¿Cuántas veces deseas jugar contra la computadora?"));
+            const veces = parseInt(prompt("¿Cuántas veces deseas jugar contra la computadora?"));
 
             for (let i = 0; i < veces; i++) {
                 // Solicitar que indiques la jugada
-                let jugadaUsuario = solicitarJugada();
+                const jugadaUsuario = solicitarJugada();
 
                 // Generar una jugada automática para la máquina
-                let jugadaMaquina = Math.floor(Math.random() * 3);
+                const jugadaMaquina = Math.floor(Math.random() * 3);
 
                 // Convertir las jugadas a texto usando las funciones
-                let jugadaUsuarioTexto = convertirJugada(jugadaUsuario);
-                let jugadaMaquinaTexto = convertirJugada(jugadaMaquina);
+                const jugadaUsuarioTexto = convertirJugada(jugadaUsuario);
+                const jugadaMaquinaTexto = convertirJugada(jugadaMaquina);
 
                 // Definir el ganador
                 let resultado = "";
